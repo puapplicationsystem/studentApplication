@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #div1{
+            background-color: white;
+            width: 80%;
+            height: 80%;
+            border-radius: 15px;
+            padding: auto;
+            border-color: black;
+            border: 12px;
+            box-shadow: 5px 5px 5px 5px grey;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        #title{
+            text-align: center;
+        }
+        #form{
+            margin-left: 37%;
+            margin-top: 5%;
+            font-size: 20px;
+        }
+        #button{
+            margin-left: 15%;
+            size: 15px;
+            background-color: grey;
+            border-radius: 12px;
+            width:20% ;
+            height: 40px;
+        }
+        #button:hover{
+            background-color: white;
+            box-decoration-break: 12px 12px 12px 12px black;
+        }
+    </style>
+    <script>
+        // JavaScript for displaying alert messages
+        function showAlert(message) {
+            alert(message);
+        }
+    </script>
+</head>
+<body bgcolor="#EEEEEE">
+    <div id="div1">
+        <h1 id="title">Insert Page</h1>
+        <form method="post" action="insert.php" id="form" autocomplete="off">
+            <label>Name &emsp; &ensp; &emsp; :</label>
+            <input type="text" name="name" placeholder="Enter Your Name" required><br><br>
+            <label>Aadhar No  &emsp;    :</label>
+            <input type="text" name="aadhar" placeholder="Enter Your Aadhar No" required><br><br>
+            <label>Date Of Birth :</label>
+            <input type="date" name="dof" required><br><br>
+            <input type="submit" id="button" value="Save & con">
+        </form>
+    </div>
+</body>
+</html>

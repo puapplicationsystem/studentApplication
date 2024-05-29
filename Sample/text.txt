@@ -1,0 +1,354 @@
+/*
+<?php 
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Check if all required fields are filled
+        if (isset($_POST["name"]) && isset($_POST["aadhar"]) && isset($_POST["dof"]) && isset($_POST["mobile"]) && isset($_POST["location"]) && isset($_POST["pin"])) {
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "personal";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            
+            // Prepare and bind SQL statement
+            $stmt = $conn->prepare("INSERT INTO personal (name, aadhar, dof, mobile, location, pincode) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssss", $name, $aadhar, $dof, $mobile, $location, $pin);
+
+            // Set parameters and execute
+            $name = $_POST["name"];
+            $aadhar = $_POST["aadhar"];
+            $dof = $_POST["dof"];
+            $mobile = $_POST["mobile"];
+            $location = $_POST["location"];
+            $pin = $_POST["pin"];
+
+            $stmt->execute();
+
+            echo "New record inserted successfully";
+
+            $stmt->close();
+            $conn->close();
+        } else {
+            echo "All fields are required";
+        }
+    }
+?>
+
+
+
+# find page...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #div1{
+            background-color: white;
+            width: 80%;
+            height: 80%;
+            border-radius: 15px;
+            padding: auto;
+            border-color: black;
+            border: 12px;
+            box-shadow: 5px 5px 5px 5px grey;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        #div2{
+            background-color: #EEEEEE;
+            width: 90%;
+            height: 70%;
+            border-radius: 15px;
+            margin-top: 7%;
+            border-color: black;
+            border: 12px;
+            box-shadow: 5px 5px 5px 5px grey;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        #title{
+            text-align: center;
+        }
+        #form{
+            margin-left: 5%;
+            margin-top: 5%;
+            font-size: 20px;
+        }
+        #button{
+            margin-left: 5%;
+            size: 15px;
+            background-color: grey;
+            border-radius: 12px;
+            width:20% ;
+            height: 30px;
+        }
+        #button:hover{
+            background-color: white;
+            box-decoration-break: 12px 12px 12px 12px black;
+        }
+       
+    </style>
+</head>
+<body bgcolor="#EEEEEE">
+    <div id="div1">
+         <h1 id="title"> Find Page</h1>
+         <form method="post" action="" id="form">
+            <label>Aahar No  &emsp; &ensp;:</label>
+            <input type="text" name="aadhar" placeholder="Enter Your Aadhar No " required >
+         </form>
+         <div id="div2">
+
+         </div>
+    </div>
+
+</body>
+</html>
+
+<?php 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if Aadhar number is provided
+    if (isset($_POST["aadhar"])) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "personal";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        
+        // Prepare and bind SQL statement to fetch data associated with Aadhar
+        $check_stmt = $conn->prepare("SELECT * FROM personal WHERE aadhar = ?");
+        $check_stmt->bind_param("s", $aadhar);
+        $aadhar = $_POST["aadhar"];
+        $check_stmt->execute();
+        $result = $check_stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            // Aadhar exists, fetch and display data in div2
+            $row = $result->fetch_assoc();
+            echo "<script>document.getElementById('div2').innerHTML = '<h2>Data for Aadhar Number: {$row['aadhar']}</h2><p>Name: {$row['name']}</p><p>Date of Birth: {$row['dof']}</p><p>Mobile: {$row['mobile']}</p><p>Location: {$row['location']}</p><p>Pincode: {$row['pincode']}</p>';</script>";
+        } else {
+            // Aadhar doesn't exist, display alert message
+            echo "<script>showAlert('Aadhar number is not in the database');</script>";
+        }
+
+        $check_stmt->close();
+        $conn->close();
+    } else {
+        // Aadhar number is required
+        echo "<script>showAlert('Aadhar number is required');</script>";
+    }
+}
+?>
+
+
+<?php 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if Aadhar number is provided
+    if (isset($_POST["aadhar"])) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "personal";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        
+        // Prepare and bind SQL statement to fetch data associated with Aadhar
+        $check_stmt = $conn->prepare("SELECT * FROM personal WHERE aadhar = ?");
+        $check_stmt->bind_param("s", $aadhar);
+        $aadhar = $_POST["aadhar"];
+        $check_stmt->execute();
+        $result = $check_stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            // Aadhar exists, fetch and display data in div2
+            $row = $result->fetch_assoc();
+            echo "<script>document.getElementById('div2').innerHTML = '<h2>Data for Aadhar Number: {$row['aadhar']}</h2><p>Name: {$row['name']}</p><p>Date of Birth: {$row['dof']}</p><p>Mobile: {$row['mobile']}</p><p>Location: {$row['location']}</p><p>Pincode: {$row['pincode']}</p>';</script>";
+        } else {
+            // Aadhar doesn't exist, display alert message
+            echo "<script>showAlert('Aadhar number is not in the database');</script>";
+        }
+
+        $check_stmt->close();
+        $conn->close();
+    } else {
+        // Aadhar number is required
+        echo "<script>showAlert('Aadhar number is required');</script>";
+    }
+}
+?>
+
+update code:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #div1{
+            background-color: white;
+            width: 80%;
+            height: 80%;
+            border-radius: 15px;
+            padding: auto;
+            border-color: black;
+            border: 12px;
+            box-shadow: 5px 5px 5px 5px grey;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        #div2{
+            background-color: #EEEEEE;
+            width: 90%;
+            height: 70%;
+            border-radius: 15px;
+            margin-top: 7%;
+            border-color: black;
+            border: 12px;
+            box-shadow: 5px 5px 5px 5px grey;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        #title{
+            text-align: center;
+        }
+        #form{
+            margin-left: 5%;
+            margin-top: 5%;
+            font-size: 20px;
+        }
+        #button{
+            margin-left: 5%;
+            size: 15px;
+            background-color: grey;
+            border-radius: 12px;
+            width:20% ;
+            height: 30px;
+        }
+        #button:hover{
+            background-color: white;
+            box-decoration-break: 12px 12px 12px 12px black;
+        }
+        h2, p, label, input {
+            display: block;
+            margin: 10px 0;
+        }
+       
+    </style>
+</head>
+<body bgcolor="#EEEEEE">
+    <div id="div1">
+         <h1 id="title"> Update Page</h1>
+         <form method="post" action="" id="form">
+            <label>Aadhar No  &emsp; &ensp;:</label>
+            <input type="text" name="aadhar" placeholder="Enter Your Aadhar No " required >
+         </form>
+         <div id="div2">
+
+         </div>
+    </div>
+
+</body>
+</html>
+<?php 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "personal";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Check if Aadhar is set and not updating
+    if (isset($_POST["aadhar"]) && !isset($_POST["name"])) {
+        $aadhar = $_POST["aadhar"];
+        $check_stmt = $conn->prepare("SELECT * FROM personal WHERE aadhar = ?");
+        $check_stmt->bind_param("s", $aadhar);
+        $check_stmt->execute();
+        $result = $check_stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            echo "<script>
+                    document.getElementById('div2').innerHTML = `
+                        <h2>Edit Information for Aadhar Number: {$row['aadhar']}</h2>
+                        <form method='post' action=''>
+                            <input type='hidden' name='aadhar' value='{$row['aadhar']}'>
+                            <label for='name'>Name:</label>
+                            <input type='text' id='name' name='name' value='{$row['name']}' required>
+                            <label for='dof'>Date of Birth:</label>
+                            <input type='date' id='dof' name='dof' value='{$row['dof']}' required>
+                            <label for='mobile'>Mobile:</label>
+                            <input type='text' id='mobile' name='mobile' value='{$row['mobile']}' required>
+                            <label for='location'>Location:</label>
+                            <input type='text' id='location' name='location' value='{$row['location']}' required>
+                            <label for='pincode'>Pincode:</label>
+                            <input type='text' id='pincode' name='pincode' value='{$row['pincode']}' required>
+                            <input type='submit' value='Update' id='button'>
+                        </form>
+                    `;
+                  </script>";
+        } else {
+            echo "<script>alert('Aadhar number is not in the database');</script>";
+        }
+
+        $check_stmt->close();
+    } elseif (isset($_POST["aadhar"]) && isset($_POST["name"]) && isset($_POST["dof"]) && isset($_POST["mobile"]) && isset($_POST["location"]) && isset($_POST["pincode"])) {
+        // Update information in the database
+        $aadhar = $_POST["aadhar"];
+        $name = $_POST["name"];
+        $dof = $_POST["dof"];
+        $mobile = $_POST["mobile"];
+        $location = $_POST["location"];
+        $pincode = $_POST["pincode"];
+
+        $update_stmt = $conn->prepare("UPDATE personal SET name=?, dof=?, mobile=?, location=?, pincode=? WHERE aadhar=?");
+        $update_stmt->bind_param("ssssss", $name, $dof, $mobile, $location, $pincode, $aadhar);
+
+        if ($update_stmt->execute()) {
+            echo "<script>alert('Information updated successfully');</script>";
+        } else {
+            echo "<script>alert('Error updating information');</script>";
+        }
+
+        $update_stmt->close();
+    } else {
+        echo "<script>alert('All fields are required');</script>";
+    }
+
+    $conn->close();
+}
+?>
