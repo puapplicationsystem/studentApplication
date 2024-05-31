@@ -10,11 +10,69 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
-        /* Hide toggle button on larger screens */
-        @media (min-width: 768px) {
-            .navbar-toggler {
-                display: none;
-            }
+       input[type=file]::file-selector-button {
+            margin-right: 20px;
+            border: none;
+            background: #084cdf;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s ease-in-out;
+        }
+
+        input[type=file]::file-selector-button:hover {
+            background: #0d45a5;
+        }
+                @media (min-width: 768px) {
+        .navbar-toggler {
+            display: none;
+        }
+        }
+        /* View Button */
+        .view-button {
+        display: none; /* Initially hidden */
+        margin-top: 5px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 10px;
+        cursor: pointer;
+        }
+
+        .view-button:hover {
+        background-color: #0056b3;
+        }
+
+        /* File Preview Container */
+        #filePreview {
+        display: flex; /* Initially hidden */
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin-top: 10px;
+    }
+                .file-preview {
+            display: none;
+            width: 20%;
+            height: 20%;
+            overflow: hidden;
+        }
+        
+
+        #filePreview img,
+        #filePreview iframe {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .error-message {
+        color: red;
+        font-size: 0.9em;
         }
 
     </style>
@@ -116,7 +174,7 @@
                 <li class="nav-item">
                     <a class="nav-link  text-white"
                     href="#"><i class="fa-solid fa-indian-rupee-sign"></i> &emsp;
-                        Payment Complete
+                        Payment 
                     </a>
                 </li>
                 
@@ -188,7 +246,7 @@
                             <li class="nav-item">
                                 <a class="nav-link  text-white"
                                 href="#"><i class="fa-solid fa-indian-rupee-sign"></i></i> &emsp;
-                                    Payment Complete
+                                    Payment
                                 </a>
                             </li>
                             
@@ -204,19 +262,154 @@
                 </div>
             </nav>
             <!--Main Page-->
+            <!--
             <main class="col-md-9 ms-sm-auto
                         col-lg-10 px-md-4 ">
                 <div class="pt-3">
                     <h2 class="text-color text-center" style="color: #000064;">
                     Certificate Upload
-                    </h2>
-                    <h1> Hello World</h1>
+                    </h2><br>
+                    <h5>Applicant Photo</h5><br>
+                    <h5>Applicant Signature</h5><br>
+                    <h5>Applicant Parent Signature</h5><br>
+                    <h5>Community Certificate</h5><br>
+                    <h5>Income Certificate</h5><br>
+                    <h5>Aadhaar Card </h5><br>
+                    <h5>Ex-Servicemen</h5><br>
+                    <h5>Differenty Abled</h5><br>
+                    <h5>Percentage of Disability</h5><br>
+                    <h5>Sports Quota</h5><br>
+                    <h5>Others</h5><br>
+                    <h5>Others</h5><br>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Default file input example</label>
+                        <input class="form-control" type="file" id="formFile">
+                        <button type="button" class="view-button" id="aadharViewButton"><i class="fa-regular fa-eye"></i></button><br>
+                      </div>
+                   
                </div>
+            </main>-->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
+                <div class="pt-3 " style="margin-bottom: 10%;">
+                    <h2 class="text-color text-center" style="color: #000064;">Certificate Upload</h2><br>
+                    
+                    <!-- Form -->
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <!-- Applicant Photo -->
+                        <div class="mb-3">
+                            <h5>Applicant Photo</h5>
+                            <input class="" type="file" name="photoFile" id="photoFile" >
+                            <button type="button" class="btn btn-primary view-button" id="photoViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="photoPreview"></div>
+                            <div class="error-message" id="photoFileError"></div>
+                        </div>
+        
+                        <!-- Applicant Signature -->
+                        <div class="mb-3">
+                            <h5>Applicant Signature</h5>
+                            <input class="" type="file" name="signatureFile" id="signatureFile" style="min-width:30% ; max-width: 50%;">
+                            <button type="button" class="btn btn-primary view-button" id="signatureViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="signaturePreview"></div>
+                            <div class="error-message" id="signatureFileError"></div>
+                        </div>
+        
+                        <!-- Applicant Parent Signature -->
+                        <div class="mb-3">
+                            <h5>Applicant Parent Signature</h5>
+                            <input class="" type="file" name="parentSignatureFile" id="parentSignatureFile" style="min-width:30% ; max-width: 50%;">
+                            <button type="button" class="btn btn-primary view-button" id="parentSignatureViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="parentSignaturePreview"></div>
+                            <div class="error-message" id="parentSignatureFileError"></div>
+                        </div>
+        
+                        <!-- Community Certificate -->
+                        <div class="mb-3">
+                            <h5>Community Certificate</h5>
+                            <input class="" type="file" name="communityCertificateFile" id="communityCertificateFile" style="min-width:30% ; max-width: 50%;">
+                            <button type="button" class="btn btn-primary view-button" id="communityCertificateViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="communityCertificatePreview"></div>
+                            <div class="error-message" id="communityCertificateFileError"></div>
+                        </div>
+        
+                        <!-- Income Certificate -->
+                        <div class="mb-3">
+                            <h5>Income Certificate</h5>
+                            <input class="" type="file" name="incomeCertificateFile" id="incomeCertificateFile" style="min-width:30% ; max-width: 50%;">
+                            <button type="button" class="btn btn-primary view-button" id="incomeCertificateViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="incomeCertificatePreview"></div>
+                            <div class="error-message" id="incomeCertificateFileeError"></div>
+                        </div>
+        
+                        <!-- Aadhaar Card -->
+                        <div class="mb-3">
+                            <h5>Aadhaar Card</h5>
+                            <input class="" type="file" name="aadhaarCardFile" id="aadhaarCardFile" style="min-width:30% ; max-width: 50%;">
+                            <button type="button" class="btn btn-primary view-button" id="aadhaarCardViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="aadhaarCardPreview"></div>
+                            <div class="error-message" id="aadhaarCardFileError"></div>
+                        </div>
+        
+                        <!-- Ex-Servicemen -->
+                        <div class="mb-3">
+                            <h5>Ex-Servicemen</h5>
+                            <input class="" type="file" name="exServicemenFile" id="exServicemenFile" style="min-width:30% ; max-width: 50%;">
+                            <button type="button" class="btn btn-primary view-button" id="exServicemenViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="exServicemenPreview"></div>
+                            <div class="error-message" id="exServicemenFileError"></div>
+                        </div>
+        
+                        <!-- Differently Abled -->
+                        <div class="mb-3">
+                            <h5>Differently Abled</h5>
+                            <input class="" type="file" name="differentlyAbledFile" id="differentlyAbledFile" style="min-width:30% ; max-width: 50%;">
+                            <button type="button" class="btn btn-primary view-button" id="differentlyAbledViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="differentlyAbledPreview"></div>
+                            <div class="error-message" id="differentlyAbledFileError"></div>
+                        </div>
+        
+                        <!-- Percentage of Disability -->
+                        <div class="mb-3">
+                            <h5>Percentage of Disability</h5>
+                            <input class="" type="file" name="percentageOfDisabilityFile" id="percentageOfDisabilityFile" style="min-width:30% ; max-width: 50%;">
+                            <button type="button" class="btn btn-primary view-button" id="percentageOfDisabilityViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="percentageOfDisabilityPreview"></div>
+                            <div class="error-message" id="percentageOfDisabilityFileError"></div>
+                        </div>
+                        
+                        <!-- Sports Quota -->
+                        <div class="mb-3">
+                            <h5>Sports Quota</h5>
+                            <input class="" type="file" name="sportsQuotaFile" id="sportsQuotaFile" style="min-width:30% ; max-width: 50%;">
+                            <button type="button" class="btn btn-primary view-button" id="sportsQuotaViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="sportsQuotaPreview"></div>
+                            <div class="error-message" id="sportsQuotaFileError"></div>
+                        </div>
+                        
+                        
+                        <div class="mb-3">
+                            <h5>Others</h5>
+                            <input class="" type="file" name="othersFile" id="othersFile" style="min-width:30% ; max-width: 50%;">
+                            <button type="button" class="btn btn-primary view-button" id="othersViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="othersPreview"></div>
+                            <div class="error-message" id="othersFileError"></div>
+                        </div>
+                        
+                        <!--
+                        <div class="mb-3">
+                            <h5>Others</h5>
+                            <input class="form-control" type="file" name="others2File" id="others2File" style="min-width:30% ; max-width: 50%;">
+                            <button type="button" class="btn btn-primary view-button" id="others2ViewButton"><i class="fas fa-eye"></i> View</button>
+                            <div class="file-preview" id="others2Preview"></div>
+                            <div class="error-message" id="others2FileError"></div>
+                        </div>-->
+                        
+                        <input type="submit" class="btn btn-primary float-end " value="Upload & Continue">
+                    </form>
+                </div>
             </main>
-            
-
-
             <!--End Main Page-->
+            
+          
         </div>
     </div>
 <!-- End Windows Menu-->
@@ -229,5 +422,189 @@
     <script src=
 "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
     </script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Function to preview file
+        function previewFile(input, previewElement) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var fileExtension = input.files[0].name.split('.').pop().toLowerCase();
+                    var fileName = input.files[0].name;
+                    var fileInfo = "<div class='file-info'>" + fileName + "</div>";
+                    if (fileExtension === 'pdf') {
+                        $(previewElement).html(fileInfo + "<iframe src='" + e.target.result + "' style='width:100%;height:300px;' frameborder='0'></iframe>");
+                    } else {
+                        $(previewElement).html(fileInfo + "<img src='" + e.target.result + "' alt='File Preview' style='max-width:100%;max-height:300px;'>");
+                    }
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    
+        // Preview file on change event
+        $('#photoFile').change(function() {
+            $('#photoViewButton').show();
+            $('#photoFileError').text('');
+        });
+
+        $('#photoViewButton').click(function() {
+                previewFile(document.getElementById('photoFile'), '#photoPreview');
+                $('#photoPreview').toggle();
+            });
+
+        $('#signatureFile').change(function() {
+            $('#signatureViewButton').show();
+            $('#signatureFileError').text('');
+        });
+
+        $('#signatureViewButton').click(function() {
+                previewFile(document.getElementById('signatureFile'), '#signaturePreview');
+                $('#signaturePreview').toggle();
+            });// Parent Signature File
+        $('#parentSignatureFile').change(function() {
+            $('#parentSignatureViewButton').show();
+            $('#parentSignatureFileError').text('');
+        });
+
+        $('#parentSignatureViewButton').click(function() {
+             previewFile(document.getElementById('parentSignatureFile'), '#parentSignaturePreview');
+            $('#parentSignaturePreview').toggle();
+        });
+
+        // Community Certificate File
+        $('#communityCertificateFile').change(function() {
+          $('#communityCertificateViewButton').show();
+          $('#communityCertificateFileError').text('');
+        });
+
+        $('#communityCertificateViewButton').click(function() {
+             previewFile(document.getElementById('communityCertificateFile'), '#communityCertificatePreview');
+            $('#communityCertificatePreview').toggle();
+        });
+
+        // Income Certificate File
+        $('#incomeCertificateFile').change(function() {
+             $('#incomeCertificateViewButton').show();
+             $('#incomeCertificateFileError').text('');
+        });
+
+        $('#incomeCertificateViewButton').click(function() {
+              previewFile(document.getElementById('incomeCertificateFile'), '#incomeCertificatePreview');
+             $('#incomeCertificatePreview').toggle();
+        });
+
+        // Aadhaar Card File
+        $('#aadhaarCardFile').change(function() {
+          $('#aadhaarCardViewButton').show();
+          $('#aadhaarCardFileError').text('');
+        });
+
+        $('#aadhaarCardViewButton').click(function() {
+            previewFile(document.getElementById('aadhaarCardFile'), '#aadhaarCardPreview');
+            $('#aadhaarCardPreview').toggle();
+        });
+
+        // Ex-Servicemen File
+        $('#exServicemenFile').change(function() {
+             $('#exServicemenViewButton').show();
+             $('#exServicemenFileError').text('');
+        });
+
+        $('#exServicemenViewButton').click(function() {
+             previewFile(document.getElementById('exServicemenFile'), '#exServicemenPreview');
+             $('#exServicemenPreview').toggle();
+        });
+
+        // Differently Abled File
+        $('#differentlyAbledFile').change(function() {
+             $('#differentlyAbledViewButton').show();
+             $('#differentlyAbledFileError').text('');
+        });
+
+        $('#differentlyAbledViewButton').click(function() {
+              previewFile(document.getElementById('differentlyAbledFile'), '#differentlyAbledPreview');
+              $('#differentlyAbledPreview').toggle();
+        });
+
+        // Percentage of Disability File
+        $('#percentageOfDisabilityFile').change(function() {
+             $('#percentageOfDisabilityViewButton').show();
+             $('#percentageOfDisabilityFileError').text('');
+        });
+
+        $('#percentageOfDisabilityViewButton').click(function() {
+            previewFile(document.getElementById('percentageOfDisabilityFile'), '#percentageOfDisabilityPreview');
+            $('#percentageOfDisabilityPreview').toggle();
+        });
+
+        // Sports Quota File
+        $('#sportsQuotaFile').change(function() {
+            $('#sportsQuotaViewButton').show();
+            $('#sportsQuotaFileError').text('');
+        });
+
+        $('#sportsQuotaViewButton').click(function() {
+            previewFile(document.getElementById('sportsQuotaFile'), '#sportsQuotaPreview');
+            $('#sportsQuotaPreview').toggle();
+        });
+        
+        // Others File
+            $('#othersFile').change(function() {
+            $('#othersViewButton').show();
+        });
+
+        $('#othersViewButton').click(function() {
+            previewFile(document.getElementById('othersFile'), '#othersPreview');
+            $('#othersPreview').toggle();
+        });
+/*
+        // Others (if there are more) File
+        $('#others2File').change(function() {
+            $('#others2ViewButton').show();
+        });
+
+        $('#others2ViewButton').click(function() {
+            previewFile(document.getElementById('others2File'), '#others2Preview');
+            $('#others2Preview').toggle();
+        });
+        */
+
+    
+        // Form submission
+        $('#uploadForm').submit(function(event) {
+            event.preventDefault();
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                url: 'upload.php', 
+                type: 'POST',
+                data: formData,
+                async: false,
+                success: function(response) {
+                        var jsonResponse = JSON.parse(response);
+                        $('.error-message').text(''); // Clear all previous error messages
+
+                        $.each(jsonResponse, function(key, value) {
+                            if (value !== 'uploaded successfully') {
+                                $('#' + key + 'Error').text(value);
+                            }
+                        });
+                    },
+            error: function(xhr, status, error) {
+                // Handle error
+                console.error(error);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+        return false;
+    });
+});
+</script>
 </body>
 </html>
