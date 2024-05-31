@@ -34,26 +34,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fileType = $_FILES[$fieldName]['type'];
             $fileNameCmps = explode(".", $fileName);
             $fileExtension = strtolower(end($fileNameCmps));
-            $newFileName = $fileInfo['prefix'] . '_' . time() . '.' . $fileExtension;
+            $newFileName = $fileInfo['prefix'] . '_' . $email . '.' . $fileExtension;
             $dest_path = $uploadDir . $newFileName;
 
             if ($fileSize > $fileInfo['maxSize']) {
                 $response[$fieldName] = 'is too large. Max file size is ' . ($fileInfo['maxSize'] / 1024) . 'KB.';
             } elseif ($fileSize < $fileInfo['minSize']) {
                 $response[$fieldName] = 'is too small. Min file size should be greater than 0 KB.';
-            } elseif (move_uploaded_file($fileTmpPath, $dest_path)) {
-                // Update the database with the file path
-                $dbField = $fileInfo['dbField'];
-                $sql = "UPDATE upload SET $dbField = ? WHERE email = ?";
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param('ss', $dest_path, $email);
-                if ($stmt->execute()) {
-                    $response[$fieldName] = 'uploaded successfully and database updated';
-                } else {
-                    $response[$fieldName] = 'uploaded successfully but database update failed';
-                }
             } else {
-                $response[$fieldName] = 'There was an error uploading ' . $fileName;
+                // Check if the file already exists in the database
+                $dbField = $fileInfo['dbField'];
+                $sql = "SELECT $dbField FROM upload WHERE email = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('s', $email);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                
+                if ($row[$dbField]) {
+                    $response[$fieldName] = 'File already exists in the database.';
+                } elseif (move_uploaded_file($fileTmpPath, $dest_path)) {
+                    // Update the database with the file path
+                    $sql = "UPDATE upload SET $dbField = ? WHERE email = ?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param('ss', $dest_path, $email);
+                    if ($stmt->execute()) {
+                        $response[$fieldName] = 'uploaded successfully and database updated';
+                    } else {
+                        $response[$fieldName] = 'uploaded successfully but database update failed';
+                    }
+                } else {
+                    $response[$fieldName] = 'There was an error uploading ' . $fileName;
+                }
             }
         } elseif (isset($_FILES[$fieldName]) && $_FILES[$fieldName]['error'] !== UPLOAD_ERR_NO_FILE) {
             $response[$fieldName] = 'There was an error uploading ' . $fileName;
