@@ -57,8 +57,8 @@
     }
                 .file-preview {
             display: none;
-            width: 20%;
-            height: 20%;
+            width: auto;
+            height:auto;
             overflow: hidden;
         }
         
@@ -194,7 +194,7 @@
     <div class="container-fluid" style="margin-top: 5px;">
         <div class="row">
             <nav id="sidebarMenu"
-                class="col-md-3 col-lg-2 d-none 
+                class="col-md-4 col-lg-3 col-xxl-2 d-none 
                         d-md-block  sidebar" style="background-color: #000064;">
                 <div class="position-sticky 
                              vh-100" style="background-color: #000064;">
@@ -289,7 +289,7 @@
                    
                </div>
             </main>-->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4  ">
+            <main class="col-md-8 ms-sm-auto col-lg-9 px-md-4  ">
                 <div class="pt-3 " style="margin-bottom: 10%;">
                     <h2 class="text-color text-center" style="color: #000064;">Certificate Upload</h2><br>
                     
@@ -299,8 +299,8 @@
                         <div class="container">
                             <div class="row">
                         <div class="mb-3 col">
-                            <h5>Applicant Photo</h5>
-                            <input class="z" type="file" name="photoFile" id="photoFile"  >
+                            <h5>Applicant Photo<sub>(Maximum 30kb)</sub><span style="color: red;">*</span></h5>
+                            <input class="z" type="file" name="photoFile" id="photoFile">
                             <button type="button" class="btn btn-primary view-button" id="photoViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="photoPreview"></div>
                             <div class="error-message" id="photoFileError"></div>
@@ -308,18 +308,18 @@
         
                         <!-- Applicant Signature -->
                         <div class="mb-3 col">
-                            <h5>Applicant Signature</h5>
+                            <h5>Applicant Signature<sub>(Maximum 30kb)</sub><span style="color: red;">*</span></h5>
                             <input class="" type="file" name="signatureFile" id="signatureFile" >
                             <button type="button" class="btn btn-primary view-button" id="signatureViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="signaturePreview"></div>
                             <div class="error-message" id="signatureFileError"></div>
                         </div>
                     </div>
-                    </div>
-        
+                    
+                    <div class="row">
                         <!-- Applicant Parent Signature -->
-                        <div class="mb-3">
-                            <h5>Applicant Parent Signature</h5>
+                        <div class="mb-3 col">
+                            <h5>Applicant Parent Signature<sub>(Maximum 30kb)</sub><span style="color: red;">*</span></h5>
                             <input class="" type="file" name="parentSignatureFile" id="parentSignatureFile"  >
                             <button type="button" class="btn btn-primary view-button" id="parentSignatureViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="parentSignaturePreview"></div>
@@ -327,17 +327,18 @@
                         </div>
         
                         <!-- Community Certificate -->
-                        <div class="mb-3">
-                            <h5>Community Certificate</h5>
+                        <div class="mb-3 col">
+                            <h5>Community Certificate<sub>(Maximum 400kb)</sub><span style="color: red;">*</span></h5>
                             <input class="" type="file" name="communityCertificateFile" id="communityCertificateFile" >
                             <button type="button" class="btn btn-primary view-button" id="communityCertificateViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="communityCertificatePreview"></div>
                             <div class="error-message" id="communityCertificateFileError"></div>
                         </div>
-        
+                    </div>
+                    <div class="row">
                         <!-- Income Certificate -->
-                        <div class="mb-3">
-                            <h5>Income Certificate</h5>
+                        <div class="mb-3 col">
+                            <h5>Income Certificate<sub>(Maximum 400kb)</sub><span style="color: red;">*</span></h5>
                             <input class="" type="file" name="incomeCertificateFile" id="incomeCertificateFile" >
                             <button type="button" class="btn btn-primary view-button" id="incomeCertificateViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="incomeCertificatePreview"></div>
@@ -345,33 +346,35 @@
                         </div>
         
                         <!-- Aadhaar Card -->
-                        <div class="mb-3">
-                            <h5>Aadhaar Card</h5>
-                            <input class="" type="file" name="aadhaarCardFile" id="aadhaarCardFile" style="min-width:30% ; max-width: 50%;">
+                        <div class="mb-3 col">
+                            <h5>Aadhaar Card<sub>(Maximum 400kb)</sub><span style="color: red;">*</span></h5>
+                            <input class="" type="file" name="aadhaarCardFile" id="aadhaarCardFile" >
                             <button type="button" class="btn btn-primary view-button" id="aadhaarCardViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="aadhaarCardPreview"></div>
                             <div class="error-message" id="aadhaarCardFileError"></div>
                         </div>
-        
+                    </div>
+                    <div class="row">
                         <!-- Ex-Servicemen -->
-                        <div class="mb-3">
+                        <div class="mb-3 col">
                             <h5>Ex-Servicemen</h5>
-                            <input class="" type="file" name="exServicemenFile" id="exServicemenFile" style="min-width:30% ; max-width: 50%;">
+                            <input class="" type="file" name="exServicemenFile" id="exServicemenFile" >
                             <button type="button" class="btn btn-primary view-button" id="exServicemenViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="exServicemenPreview"></div>
                             <div class="error-message" id="exServicemenFileError"></div>
                         </div>
         
                         <!-- Differently Abled -->
-                        <div class="mb-3">
+                        <div class="mb-3 col">
                             <h5>Differently Abled</h5>
-                            <input class="" type="file" name="differentlyAbledFile" id="differentlyAbledFile" style="min-width:30% ; max-width: 50%;">
+                            <input class="" type="file" name="differentlyAbledFile" id="differentlyAbledFile" >
                             <button type="button" class="btn btn-primary view-button" id="differentlyAbledViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="differentlyAbledPreview"></div>
                             <div class="error-message" id="differentlyAbledFileError"></div>
                         </div>
-        
-                        <!-- Percentage of Disability -->
+                    </div>
+                    <div class="row">
+                        <!-- Percentage of Disability 
                         <div class="mb-3">
                             <h5>Percentage of Disability</h5>
                             <input class="" type="file" name="percentageOfDisabilityFile" id="percentageOfDisabilityFile" style="min-width:30% ; max-width: 50%;">
@@ -379,25 +382,26 @@
                             <div class="file-preview" id="percentageOfDisabilityPreview"></div>
                             <div class="error-message" id="percentageOfDisabilityFileError"></div>
                         </div>
-                        
+                        -->
                         <!-- Sports Quota -->
-                        <div class="mb-3">
+                        <div class="mb-3 col">
                             <h5>Sports Quota</h5>
-                            <input class="" type="file" name="sportsQuotaFile" id="sportsQuotaFile" style="min-width:30% ; max-width: 50%;">
+                            <input class="" type="file" name="sportsQuotaFile" id="sportsQuotaFile" >
                             <button type="button" class="btn btn-primary view-button" id="sportsQuotaViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="sportsQuotaPreview"></div>
                             <div class="error-message" id="sportsQuotaFileError"></div>
                         </div>
-                        
-                        
-                        <div class="mb-3">
+                        <!--Others-->
+                        <div class="mb-3 col">
                             <h5>Others</h5>
                             <input class="" type="file" name="othersFile" id="othersFile" style="min-width:30% ; max-width: 50%;">
                             <button type="button" class="btn btn-primary view-button" id="othersViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="othersPreview"></div>
                             <div class="error-message" id="othersFileError"></div>
                         </div>
+                    </div>
                         
+                       
                         <!--
                         <div class="mb-3">
                             <h5>Others</h5>
@@ -406,7 +410,7 @@
                             <div class="file-preview" id="others2Preview"></div>
                             <div class="error-message" id="others2FileError"></div>
                         </div>-->
-                        
+                    </div>
                         <input type="submit" class="btn btn-primary float-end " value="Upload & Continue">
                     </form>
                 </div>
@@ -534,7 +538,7 @@
               previewFile(document.getElementById('differentlyAbledFile'), '#differentlyAbledPreview');
               $('#differentlyAbledPreview').toggle();
         });
-
+/*
         // Percentage of Disability File
         $('#percentageOfDisabilityFile').change(function() {
              $('#percentageOfDisabilityViewButton').show();
@@ -545,7 +549,7 @@
             previewFile(document.getElementById('percentageOfDisabilityFile'), '#percentageOfDisabilityPreview');
             $('#percentageOfDisabilityPreview').toggle();
         });
-
+        */
         // Sports Quota File
         $('#sportsQuotaFile').change(function() {
             $('#sportsQuotaViewButton').show();

@@ -13,17 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $email = "mothish2@gmail.com";
     $fields = [
-        'photoFile' => ['prefix' => 'photo', 'maxSize' => 30 * 1024, 'minSize' => 1, 'dbField' => 'photo'], // 30KB max, > 0 min
-        'signatureFile' => ['prefix' => 'signature', 'maxSize' => 30 * 1024, 'minSize' => 1, 'dbField' => 'sign'], // 30KB max, > 0 min
-        'parentSignatureFile' => ['prefix' => 'parent_signature', 'maxSize' => 400 * 1024, 'minSize' => 1, 'dbField' => 'parentsign'], // 400KB max, > 0 min
-        'communityCertificateFile' => ['prefix' => 'community_certificate', 'maxSize' => 400 * 1024, 'minSize' => 1, 'dbField' => 'community'], // 400KB max, > 0 min
-        'incomeCertificateFile' => ['prefix' => 'income_certificate', 'maxSize' => 400 * 1024, 'minSize' => 1, 'dbField' => 'income'], // 400KB max, > 0 min
-        'aadhaarCardFile' => ['prefix' => 'aadhaar_card', 'maxSize' => 400 * 1024, 'minSize' => 1, 'dbField' => 'aadhaar'], // 400KB max, > 0 min
-        'exServicemenFile' => ['prefix' => 'ex_servicemen', 'maxSize' => 400 * 1024, 'minSize' => 1, 'dbField' => 'exservice'], // 400KB max, > 0 min
-        'differentlyAbledFile' => ['prefix' => 'differently_abled', 'maxSize' => 400 * 1024, 'minSize' => 1, 'dbField' => 'differently'], // 400KB max, > 0 min
-        'percentageOfDisabilityFile' => ['prefix' => 'percentage_of_disability', 'maxSize' => 400 * 1024, 'minSize' => 1, 'dbField' => 'shorts'], // 400KB max, > 0 min
-        'sportsQuotaFile' => ['prefix' => 'sports_quota', 'maxSize' => 400 * 1024, 'minSize' => 1, 'dbField' => 'shorts'], // 400KB max, > 0 min
-        'othersFile' => ['prefix' => 'others1', 'maxSize' => 400 * 1024, 'minSize' => 1, 'dbField' => 'others'], // 400KB max, > 0 min
+        'photoFile' => ['prefix' => 'photo', 'maxSize' => 30720, 'minSize' => 1, 'dbField' => 'photo'], // 30KB max, > 0 min
+        'signatureFile' => ['prefix' => 'signature', 'maxSize' => 30720, 'minSize' => 1, 'dbField' => 'sign'], // 30KB max, > 0 min
+        'parentSignatureFile' => ['prefix' => 'parent_signature', 'maxSize' => 30720, 'minSize' => 1, 'dbField' => 'parentsign'], // 400KB max, > 0 min
+        'communityCertificateFile' => ['prefix' => 'community_certificate', 'maxSize' => 409600, 'minSize' => 1, 'dbField' => 'community'], // 400KB max, > 0 min
+        'incomeCertificateFile' => ['prefix' => 'income_certificate', 'maxSize' => 409600, 'minSize' => 1, 'dbField' => 'income'], // 400KB max, > 0 min
+        'aadhaarCardFile' => ['prefix' => 'aadhaar_card', 'maxSize' => 409600, 'minSize' => 1, 'dbField' => 'aadhaar'], // 400KB max, > 0 min
+        'exServicemenFile' => ['prefix' => 'ex_servicemen', 'maxSize' => 409600, 'minSize' => 1, 'dbField' => 'exservice'], // 400KB max, > 0 min
+        'differentlyAbledFile' => ['prefix' => 'differently_abled', 'maxSize' => 409600, 'minSize' => 1, 'dbField' => 'differently'], // 400KB max, > 0 min
+        'sportsQuotaFile' => ['prefix' => 'sports_quota', 'maxSize' => 409600, 'minSize' => 1, 'dbField' => 'shorts'], // 400KB max, > 0 min
+        'othersFile' => ['prefix' => 'others1', 'maxSize' => 409600, 'minSize' => 1, 'dbField' => 'others'], // 400KB max, > 0 min
     ];
 
     foreach ($fields as $fieldName => $fileInfo) {
