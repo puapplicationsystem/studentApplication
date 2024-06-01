@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
-    $email = "vicky2@gmail.com";
+    $email = "mothish2@gmail.com";
     $fields = [
         'photoFile' => ['prefix' => 'photo', 'maxSize' => 30 * 1024, 'minSize' => 1, 'dbField' => 'photo'], // 30KB max, > 0 min
         'signatureFile' => ['prefix' => 'signature', 'maxSize' => 30 * 1024, 'minSize' => 1, 'dbField' => 'sign'], // 30KB max, > 0 min

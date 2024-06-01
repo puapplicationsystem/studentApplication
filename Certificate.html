@@ -289,34 +289,38 @@
                    
                </div>
             </main>-->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4  ">
                 <div class="pt-3 " style="margin-bottom: 10%;">
                     <h2 class="text-color text-center" style="color: #000064;">Certificate Upload</h2><br>
                     
                     <!-- Form -->
                     <form id="uploadForm" enctype="multipart/form-data">
                         <!-- Applicant Photo -->
-                        <div class="mb-3">
+                        <div class="container">
+                            <div class="row">
+                        <div class="mb-3 col">
                             <h5>Applicant Photo</h5>
-                            <input class="" type="file" name="photoFile" id="photoFile"  style="min-width:30% ; max-width: 50%;">
+                            <input class="z" type="file" name="photoFile" id="photoFile"  >
                             <button type="button" class="btn btn-primary view-button" id="photoViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="photoPreview"></div>
                             <div class="error-message" id="photoFileError"></div>
                         </div>
         
                         <!-- Applicant Signature -->
-                        <div class="mb-3">
+                        <div class="mb-3 col">
                             <h5>Applicant Signature</h5>
-                            <input class="" type="file" name="signatureFile" id="signatureFile" style="min-width:30% ; max-width: 50%;">
+                            <input class="" type="file" name="signatureFile" id="signatureFile" >
                             <button type="button" class="btn btn-primary view-button" id="signatureViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="signaturePreview"></div>
                             <div class="error-message" id="signatureFileError"></div>
                         </div>
+                    </div>
+                    </div>
         
                         <!-- Applicant Parent Signature -->
                         <div class="mb-3">
                             <h5>Applicant Parent Signature</h5>
-                            <input class="" type="file" name="parentSignatureFile" id="parentSignatureFile" style="min-width:30% ; max-width: 50%;">
+                            <input class="" type="file" name="parentSignatureFile" id="parentSignatureFile"  >
                             <button type="button" class="btn btn-primary view-button" id="parentSignatureViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="parentSignaturePreview"></div>
                             <div class="error-message" id="parentSignatureFileError"></div>
@@ -325,7 +329,7 @@
                         <!-- Community Certificate -->
                         <div class="mb-3">
                             <h5>Community Certificate</h5>
-                            <input class="" type="file" name="communityCertificateFile" id="communityCertificateFile" style="min-width:30% ; max-width: 50%;">
+                            <input class="" type="file" name="communityCertificateFile" id="communityCertificateFile" >
                             <button type="button" class="btn btn-primary view-button" id="communityCertificateViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="communityCertificatePreview"></div>
                             <div class="error-message" id="communityCertificateFileError"></div>
@@ -334,7 +338,7 @@
                         <!-- Income Certificate -->
                         <div class="mb-3">
                             <h5>Income Certificate</h5>
-                            <input class="" type="file" name="incomeCertificateFile" id="incomeCertificateFile" style="min-width:30% ; max-width: 50%;">
+                            <input class="" type="file" name="incomeCertificateFile" id="incomeCertificateFile" >
                             <button type="button" class="btn btn-primary view-button" id="incomeCertificateViewButton"><i class="fas fa-eye"></i> View</button>
                             <div class="file-preview" id="incomeCertificatePreview"></div>
                             <div class="error-message" id="incomeCertificateFileeError"></div>
